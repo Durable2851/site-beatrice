@@ -1,12 +1,13 @@
 # Informations et photos à demander à Béatrice
 
-## Photos (le plus important pour le rendu du site)
-- [ ] Portrait de Béatrice en lumière naturelle, souriante, de préférence en extérieur ou près d'une fenêtre (format vertical)
-- [ ] Le cabinet : la salle de soin, la table ou le futon, la décoration
-- [ ] 2 ou 3 photos « en séance » : mains sur un pied (réflexologie), shiatsu, flacons d'élixirs
-- [ ] La vue ou la nature autour du cabinet (Chartreuse, jardin, chemin)
-- [ ] Le logo d'origine, s'il existe en bonne qualité
-Un smartphone récent suffit, en journée, sans flash.
+## Photos
+- [x] Portrait (reçu le 17/10/2026)
+- [x] Photos d'une séance de bioénergétique Acmos au jardin et sur la terrasse (reçues le 17/10/2026)
+- [ ] **Accord écrit de la consultante** visible sur les photos de séance au jardin (droit à l'image), ou photo de remplacement
+- [ ] Le cabinet intérieur : la salle de soin, la table ou le futon
+- [ ] Photos en séance de réflexologie (mains sur un pied) et de shiatsu
+- [ ] Flacons d'élixirs floraux
+- [ ] La carte de visite colorée / le logo d'origine, si possible en bonne qualité
 
 ## Informations pratiques
 - [ ] Durée de chaque soin
