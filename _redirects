@@ -1,0 +1,6 @@
+# Redirections 301 des anciennes adresses Wix vers le nouveau site (Cloudflare Pages)
+/quisuije              /#qui-suis-je   301
+/prestationproposees   /#soins         301
+/mespratiquesliens     /philosophie.html 301
+/mecontacter           /#contact       301
+/partenaires           /               301

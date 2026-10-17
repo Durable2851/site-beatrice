@@ -1,0 +1,270 @@
+/* Mieux-Être et Harmonie — feuille de style commune
+   Concept : « Sentier de Chartreuse » — une page calme qui descend comme un chemin,
+   brume vert-de-gris, crêtes calcaires du massif, une seule touche dorée (lichen). */
+:root {
+  --mist: #edf0ea;        /* fond : brume du matin */
+  --paper: #f8f9f5;       /* surfaces claires */
+  --ink: #1d2a23;         /* texte principal : sapin profond */
+  --ink-soft: #4c5b53;    /* texte secondaire */
+  --moss: #46684f;        /* accent : mousse */
+  --moss-strong: #34513d;
+  --lichen: #a08549;      /* touche chaude, avec parcimonie */
+  --line: #cdd5ca;
+  --ridge-1: #d9e0d6;
+  --ridge-2: #bfcbbd;
+  --ridge-3: #97a99a;
+  --ridge-4: #5f7765;
+  --on-moss: #f4f7f2;
+
+  --font-display: "Marcellus", "Cormorant Garamond", Georgia, serif;
+  --font-body: "Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+
+  --step--1: 0.875rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.3rem;
+  --step-2: 1.7rem;
+  --step-3: 2.3rem;
+  --step-4: clamp(2.3rem, 5.2vw, 3.6rem);
+
+  --radius: 6px;
+  --wrap: 72rem;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --mist: #121a16; --paper: #18221d; --ink: #e2e9e1; --ink-soft: #a7b5ab;
+    --moss: #8fb597; --moss-strong: #a9cbb0; --lichen: #cdb47c; --line: #2b3a31;
+    --ridge-1: #1f2d26; --ridge-2: #27392f; --ridge-3: #32493c; --ridge-4: #3f594a;
+    --on-moss: #102017; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --mist: #121a16; --paper: #18221d; --ink: #e2e9e1; --ink-soft: #a7b5ab;
+  --moss: #8fb597; --moss-strong: #a9cbb0; --lichen: #cdb47c; --line: #2b3a31;
+  --ridge-1: #1f2d26; --ridge-2: #27392f; --ridge-3: #32493c; --ridge-4: #3f594a;
+  --on-moss: #102017; color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { animation: none !important; transition: none !important; } }
+body {
+  margin: 0; background: var(--mist); color: var(--ink);
+  font-family: var(--font-body); font-size: var(--step-0); line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--moss-strong); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible, select:focus-visible {
+  outline: 2px solid var(--lichen); outline-offset: 3px; border-radius: 3px;
+}
+h1, h2, h3 { font-family: var(--font-display); font-weight: 400; line-height: 1.15; text-wrap: balance; margin: 0; }
+h1 { font-size: var(--step-4); letter-spacing: -0.01em; }
+h2 { font-size: var(--step-3); }
+h3 { font-size: var(--step-1); }
+p { margin: 0; }
+.wrap {
+  max-width: var(--wrap); margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.eyebrow {
+  font-size: var(--step--1); letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--moss); font-weight: 600;
+}
+.lead { font-size: var(--step-1); color: var(--ink-soft); line-height: 1.55; max-width: 36em; }
+.prose { max-width: 38em; display: grid; gap: 1em; color: var(--ink-soft); }
+.todo { /* contenu à confirmer par Béatrice — visible uniquement dans la maquette */
+  background: color-mix(in srgb, var(--lichen) 18%, transparent);
+  border-bottom: 1px dashed var(--lichen); padding: 0 0.2em; border-radius: 2px;
+}
+
+/* Boutons */
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5em; padding: 0.8em 1.4em;
+  border-radius: 999px; font: 600 var(--step--1)/1 var(--font-body); letter-spacing: 0.04em;
+  text-decoration: none; border: 1px solid var(--moss); cursor: pointer; transition: background .2s, color .2s;
+}
+.btn-primary { background: var(--moss); color: var(--on-moss); }
+.btn-primary:hover { background: var(--moss-strong); border-color: var(--moss-strong); }
+.btn-ghost { background: transparent; color: var(--moss-strong); }
+.btn-ghost:hover { background: color-mix(in srgb, var(--moss) 10%, transparent); }
+
+/* En-tête */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--mist); }
+.site-header {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: color-mix(in srgb, var(--mist) 88%, transparent);
+  backdrop-filter: blur(10px); border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+}
+.site-header .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.85rem; }
+.brand { display: flex; align-items: center; gap: 0.7rem; text-decoration: none; color: var(--ink); }
+.brand-mark { width: 34px; height: 34px; flex: none; }
+.brand-name { font-family: var(--font-display); font-size: 1.2rem; line-height: 1.1; }
+.brand-name small { display: block; font-family: var(--font-body); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-soft); }
+.nav { display: flex; align-items: center; gap: 1.6rem; }
+.nav a { color: var(--ink); text-decoration: none; font-size: 0.95rem; }
+.nav a:hover, .nav a[aria-current="page"] { color: var(--moss); }
+.nav .btn { color: var(--on-moss); }
+.nav-toggle { display: none; background: none; border: 1px solid var(--line); color: var(--ink); border-radius: 999px; padding: 0.5em 1em; font: inherit; font-size: 0.9rem; cursor: pointer; }
+@media (max-width: 860px) {
+  .nav-toggle { display: inline-block; }
+  .nav { display: none; position: absolute; inset: 100% 0 auto; flex-direction: column; align-items: stretch; gap: 0;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    padding: 0.5rem max(16px, env(safe-area-inset-right, 0px)) 1rem max(16px, env(safe-area-inset-left, 0px)); }
+  .nav.open { display: flex; }
+  .nav a { padding: 0.75rem 0; border-bottom: 1px solid var(--line); }
+  .nav .btn { margin-top: 0.8rem; justify-content: center; border-bottom: 1px solid var(--moss); }
+}
+
+/* Héros */
+.hero { position: relative; overflow: hidden; }
+.hero .wrap { display: grid; grid-template-columns: 1.25fr 0.75fr; gap: 3rem; align-items: center; padding-block: 4.5rem 9rem; position: relative; z-index: 1; }
+.hero-text { display: grid; gap: 1.4rem; min-width: 0; }
+.hero-text h1 em { font-style: normal; color: var(--moss); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; }
+.hero-place { display: flex; flex-wrap: wrap; gap: 0.4rem 1.2rem; font-size: var(--step--1); color: var(--ink-soft); }
+.hero-place span::before { content: "◦ "; color: var(--lichen); }
+.arch {
+  aspect-ratio: 4 / 5; width: 100%; max-width: 340px; justify-self: end; border-radius: 999px 999px var(--radius) var(--radius);
+  background: linear-gradient(170deg, var(--ridge-2), var(--ridge-3));
+  display: grid; place-items: end center; padding: 1.5rem; text-align: center;
+  color: var(--ink); font-size: var(--step--1); border: 1px solid var(--line);
+}
+.arch span { background: color-mix(in srgb, var(--paper) 80%, transparent); padding: 0.35em 0.8em; border-radius: 999px; }
+.ridges { position: absolute; inset: auto 0 0; width: 100%; height: clamp(120px, 18vw, 240px); z-index: 0; }
+
+/* Sections */
+section { scroll-margin-top: 80px; }
+.band { padding-block: 5.5rem; }
+.band-paper { background: var(--paper); }
+.section-head { display: grid; gap: 0.8rem; margin-bottom: 3rem; max-width: 42rem; }
+
+/* Triade de l'équilibre */
+.triad { display: grid; grid-template-columns: auto 1fr; gap: 3rem; align-items: center; }
+.ripples { width: min(260px, 60vw); height: auto; }
+.triad-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2rem; }
+.triad-list div { display: grid; gap: 0.5rem; border-top: 1px solid var(--line); padding-top: 1.2rem; }
+.triad-list strong { font-family: var(--font-display); font-weight: 400; font-size: var(--step-1); }
+.triad-list p { color: var(--ink-soft); font-size: 0.98rem; }
+.quote { font-family: var(--font-display); font-size: var(--step-2); line-height: 1.3; max-width: 26em; }
+.quote::before { content: "« "; color: var(--lichen); }
+.quote::after { content: " »"; color: var(--lichen); }
+
+/* Carte des soins */
+.menu { display: grid; gap: 3.5rem; }
+.menu-group { display: grid; grid-template-columns: 14rem 1fr; gap: 2rem; }
+.menu-group > h3 { font-family: var(--font-body); font-size: var(--step--1); letter-spacing: 0.16em; text-transform: uppercase; color: var(--moss); font-weight: 600; padding-top: 0.4rem; }
+.menu-items { display: grid; }
+.soin { display: grid; grid-template-columns: 1fr auto; gap: 0.4rem 2rem; padding-block: 1.4rem; border-bottom: 1px solid var(--line); }
+.soin:first-child { border-top: 1px solid var(--line); }
+.soin h4 { font-family: var(--font-display); font-weight: 400; font-size: var(--step-2); margin: 0; line-height: 1.2; }
+.soin p { color: var(--ink-soft); grid-column: 1; max-width: 36em; }
+.soin .price { grid-column: 2; grid-row: 1 / span 2; text-align: right; font-variant-numeric: tabular-nums; display: grid; align-content: start; gap: 0.2rem; }
+.price b { font-family: var(--font-display); font-weight: 400; font-size: var(--step-2); color: var(--ink); }
+.price small { color: var(--ink-soft); font-size: var(--step--1); }
+.soin .more { grid-column: 1; font-size: var(--step--1); }
+.menu-note { color: var(--ink-soft); font-size: var(--step--1); margin-top: 2rem; max-width: 46em; }
+
+/* Qui suis-je */
+.about { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem; align-items: start; }
+.photo-ph {
+  aspect-ratio: 4 / 5; max-width: 100%; border-radius: var(--radius); border: 1px dashed var(--ridge-3);
+  background: repeating-linear-gradient(135deg, transparent 0 14px, color-mix(in srgb, var(--ridge-2) 40%, transparent) 14px 15px);
+  display: grid; place-items: center; text-align: center; padding: 1.5rem; color: var(--ink-soft); font-size: var(--step--1);
+}
+.about-text { display: grid; gap: 1.5rem; min-width: 0; }
+.stat { display: flex; align-items: baseline; gap: 0.8rem; }
+.stat b { font-family: var(--font-display); font-weight: 400; font-size: 3.4rem; line-height: 1; color: var(--moss); }
+.certs { display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0; list-style: none; }
+.certs li { border: 1px solid var(--line); border-radius: 999px; padding: 0.3em 0.9em; font-size: var(--step--1); letter-spacing: 0.06em; background: var(--mist); }
+
+/* Infos pratiques */
+.practical { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 2.5rem; }
+.practical div { display: grid; gap: 0.6rem; align-content: start; }
+.practical svg { width: 30px; height: 30px; color: var(--moss); }
+.practical p { color: var(--ink-soft); }
+
+/* Réservation (maquette) */
+.booking { display: grid; grid-template-columns: 1fr 1.3fr; gap: 3rem; align-items: start; }
+.booking-intro { display: grid; gap: 1.2rem; }
+.booker { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 1.6rem; display: grid; gap: 1.5rem; min-width: 0; }
+.booker fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 0.7rem; min-width: 0; }
+.booker legend { font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--moss); font-weight: 600; margin-bottom: 0.7rem; padding: 0; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+.chip span { display: inline-block; border: 1px solid var(--line); border-radius: 999px; padding: 0.45em 1em; font-size: 0.92rem; background: var(--mist); transition: all .15s; }
+.chip input:checked + span { background: var(--moss); color: var(--on-moss); border-color: var(--moss); }
+.chip input:focus-visible + span { outline: 2px solid var(--lichen); outline-offset: 2px; }
+.chip input:disabled + span { opacity: 0.4; text-decoration: line-through; }
+.days { display: grid; grid-auto-flow: column; grid-auto-columns: 4.2rem; gap: 0.5rem; overflow-x: auto; padding-bottom: 0.4rem; }
+.day span { display: grid; text-align: center; padding: 0.5em 0; line-height: 1.25; border-radius: 10px; }
+.day small { font-size: 0.72rem; letter-spacing: 0.08em; text-transform: uppercase; color: inherit; opacity: 0.8; }
+.day b { font-family: var(--font-display); font-weight: 400; font-size: 1.35rem; }
+.field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+.field { display: grid; gap: 0.3rem; font-size: var(--step--1); color: var(--ink-soft); }
+.field input { font: inherit; font-size: 1rem; padding: 0.65em 0.8em; border: 1px solid var(--line); border-radius: var(--radius); background: var(--mist); color: var(--ink); min-width: 0; }
+.summary { border-top: 1px solid var(--line); padding-top: 1.2rem; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 1rem; }
+.summary p { color: var(--ink-soft); font-size: 0.95rem; min-width: 0; }
+.summary strong { color: var(--ink); font-weight: 600; }
+.confirm { background: color-mix(in srgb, var(--moss) 12%, transparent); border: 1px solid var(--moss); border-radius: var(--radius); padding: 1rem 1.2rem; font-size: 0.95rem; }
+.mock-flag { font-size: 0.78rem; color: var(--lichen); letter-spacing: 0.08em; text-transform: uppercase; }
+
+/* FAQ */
+.faq { display: grid; max-width: 48rem; }
+.faq details { border-bottom: 1px solid var(--line); padding-block: 1.1rem; }
+.faq summary { cursor: pointer; font-family: var(--font-display); font-size: var(--step-1); list-style: none; display: flex; justify-content: space-between; gap: 1rem; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary::after { content: "+"; color: var(--moss); font-family: var(--font-body); }
+.faq details[open] summary::after { content: "–"; }
+.faq details p { color: var(--ink-soft); margin-top: 0.8rem; max-width: 42em; }
+
+/* Contact */
+.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.contact dl { display: grid; grid-template-columns: auto 1fr; gap: 0.9rem 1.5rem; margin: 0; }
+.contact dt { font-size: var(--step--1); letter-spacing: 0.14em; text-transform: uppercase; color: var(--moss); font-weight: 600; padding-top: 0.2rem; }
+.contact dd { margin: 0; user-select: all; min-width: 0; overflow-wrap: anywhere; }
+.zone { color: var(--ink-soft); display: grid; gap: 1rem; }
+
+/* Pied de page */
+.site-footer { background: var(--ink); color: var(--mist); padding-block: 3rem; font-size: var(--step--1); }
+.site-footer .wrap { display: grid; gap: 1.2rem; }
+.site-footer a { color: inherit; }
+.site-footer .disclaimer { max-width: 52em; opacity: 0.8; }
+.footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; opacity: 0.9; }
+
+/* Page Philosophie */
+.page-hero .wrap { padding-block: 4.5rem 8rem; display: grid; gap: 1.3rem; position: relative; z-index: 1; }
+.methods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 3rem 4rem; }
+.method { display: grid; gap: 0.7rem; align-content: start; }
+.method h3 { font-size: var(--step-2); }
+.method p { color: var(--ink-soft); }
+.method .tag { font-size: var(--step--1); color: var(--moss); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+.split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
+.split ul { margin: 0; padding-left: 1.1em; color: var(--ink-soft); display: grid; gap: 0.5rem; }
+.cta-band { text-align: center; display: grid; justify-items: center; gap: 1.2rem; }
+
+/* Responsive */
+@media (max-width: 860px) {
+  .hero .wrap, .about, .booking, .contact, .triad, .split { grid-template-columns: 1fr; }
+  .hero .wrap { padding-block: 3rem 7rem; gap: 2rem; }
+  .arch { max-width: 230px; justify-self: start; }
+  .menu-group { grid-template-columns: 1fr; gap: 1rem; }
+  .triad-list, .practical, .methods { grid-template-columns: 1fr; gap: 1.8rem; }
+  .ripples { width: 180px; }
+  .band { padding-block: 4rem; }
+  .photo-ph { max-width: 320px; }
+}
+@media (max-width: 520px) {
+  .soin { grid-template-columns: 1fr; }
+  .soin .price { grid-column: 1; grid-row: auto; text-align: left; grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 0.6rem; }
+  .field-row { grid-template-columns: 1fr; }
+  .contact dl { grid-template-columns: 1fr; gap: 0.2rem; }
+  .contact dd { margin-bottom: 0.8rem; }
+}
+
+/* Respiration lente des cercles (seul mouvement du site) */
+.ripple { transform-origin: 100px 100px; animation: breathe 8s ease-in-out infinite; }
+.ripple.r2 { animation-delay: .6s; }
+.ripple.r3 { animation-delay: 1.2s; }
+@keyframes breathe { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.045); } }
