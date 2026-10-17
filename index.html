@@ -14,9 +14,8 @@
 <meta property="og:url" content="https://www.mieux-etreetharmonie.com/">
 <meta property="og:image" content="https://www.mieux-etreetharmonie.com/assets/og-image.jpg">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Marcellus&display=swap">
+<link rel="preload" href="assets/fonts/marcellus-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/figtree-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="assets/style.css">
 <script>document.documentElement.classList.add('js')</script>
 <script type="application/ld+json">
@@ -61,8 +60,8 @@
       <svg class="brand-mark" viewBox="0 0 40 40" aria-hidden="true" fill="none" stroke="currentColor">
         <circle cx="20" cy="20" r="18.5" stroke-width="1" opacity=".35"/>
         <circle cx="20" cy="20" r="12.5" stroke-width="1" opacity=".6"/>
-        <path d="M20 29c-5-3-6.5-8-3.5-13 1-1.6 2.2-2.8 3.5-3.8 1.3 1 2.5 2.2 3.5 3.8 3 5 1.5 10-3.5 13Z" fill="var(--moss)" stroke="none"/>
-        <path d="M20 29V15" stroke="var(--mist)" stroke-width="1"/>
+        <circle cx="20" cy="20" r="6.5" fill="var(--amethyst)" stroke="none"/>
+        <circle cx="20" cy="20" r="2.2" fill="var(--amber)" stroke="none"/>
       </svg>
       <span class="brand-name">Mieux-Être et Harmonie<small>Béatrice Desies</small></span>
     </a>
@@ -96,28 +95,28 @@
         <picture><source type="image/webp" srcset="assets/photos/acmos-treille-400.webp 400w, assets/photos/acmos-treille-720.webp 720w" sizes="(max-width: 860px) 230px, 340px"><img src="assets/photos/acmos-treille-720.jpg" srcset="assets/photos/acmos-treille-400.jpg 400w, assets/photos/acmos-treille-720.jpg 720w" sizes="(max-width: 860px) 230px, 340px" width="720" height="900" alt="Béatrice Desies pendant un bilan bioénergétique Acmos, sous la treille du cabinet" fetchpriority="high"></picture>
       </div>
     </div>
-    <svg class="ridges" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true">
-      <path data-depth="0.18" fill="var(--ridge-1)" d="M0 150 L140 118 L270 92 L390 74 L470 62 L520 40 L700 37 L716 64 L820 92 L960 72 L1090 44 L1175 30 L1265 60 L1440 82 V240 H0Z"/>
-      <path data-depth="0.11" fill="var(--ridge-2)" d="M0 172 C200 132 300 124 430 142 S650 108 770 122 S1010 152 1130 122 S1340 112 1440 132 V240 H0Z"/>
-      <path data-depth="0.05" fill="var(--ridge-3)" d="M0 202 C180 172 330 166 490 186 S770 160 910 176 S1210 196 1440 170 V240 H0Z"/>
-      <path fill="var(--forest)" d="M0 228 C240 208 430 216 630 223 S1010 206 1210 216 S1390 224 1440 220 V240 H0Z"/>
+    <svg class="waves" viewBox="0 0 1440 240" preserveAspectRatio="none" aria-hidden="true">
+      <path data-depth="0.18" fill="var(--wave-1)" d="M0 120 C240 60 480 60 720 110 S1200 170 1440 100 V240 H0Z"/>
+      <path data-depth="0.11" fill="var(--wave-2)" d="M0 165 C260 120 520 200 760 160 S1180 110 1440 150 V240 H0Z"/>
+      <path data-depth="0.05" fill="var(--wave-3)" d="M0 200 C300 175 560 225 820 200 S1240 180 1440 205 V240 H0Z"/>
+      <path fill="var(--night)" d="M0 228 C360 212 720 238 1080 222 S1380 216 1440 224 V240 H0Z"/>
     </svg>
   </section>
 
-  <section class="band band-forest" aria-labelledby="equilibre">
+  <section class="band band-night" aria-labelledby="equilibre">
     <div class="wrap triad">
       <svg class="ripples reveal" viewBox="0 0 200 200" aria-hidden="true" fill="none">
-        <circle cx="100" cy="100" r="94" stroke="var(--sky)" stroke-width="1.2" opacity=".7" class="ripple r3"/>
-        <circle cx="100" cy="100" r="63" stroke="var(--heather)" stroke-width="1.4" opacity=".85" class="ripple r2"/>
-        <circle cx="100" cy="100" r="32" stroke="var(--dawn)" stroke-width="1.6" class="ripple r1"/>
-        <circle cx="100" cy="100" r="6" fill="var(--gold)"/>
+        <circle cx="100" cy="100" r="94" stroke="var(--gold)" stroke-width="1.2" opacity=".7" class="ripple r3"/>
+        <circle cx="100" cy="100" r="63" stroke="var(--violet)" stroke-width="1.4" opacity=".85" class="ripple r2"/>
+        <circle cx="100" cy="100" r="32" stroke="var(--rose)" stroke-width="1.6" class="ripple r1"/>
+        <circle cx="100" cy="100" r="6" fill="var(--amber)"/>
       </svg>
       <div style="display:grid; gap:2.2rem; min-width:0">
         <h2 id="equilibre" class="quote reveal">Tout est une question d'équilibre énergétique.</h2>
         <div class="triad-list">
-          <div class="c-dawn reveal" style="--d:.1s"><strong>Soi avec soi</strong><p>Écouter son corps, apaiser le mental, libérer les tensions accumulées.</p></div>
-          <div class="c-heather reveal" style="--d:.25s"><strong>Soi avec les autres</strong><p>Retrouver une relation plus sereine à son entourage et à ses émotions.</p></div>
-          <div class="c-sky reveal" style="--d:.4s"><strong>Soi avec l'univers</strong><p>Se reconnecter à la nature, aux saisons et à son énergie vitale.</p></div>
+          <div class="c-rose reveal" style="--d:.1s"><strong>Soi avec soi</strong><p>Écouter son corps, apaiser le mental, libérer les tensions accumulées.</p></div>
+          <div class="c-violet reveal" style="--d:.25s"><strong>Soi avec les autres</strong><p>Retrouver une relation plus sereine à son entourage et à ses émotions.</p></div>
+          <div class="c-gold reveal" style="--d:.4s"><strong>Soi avec l'univers</strong><p>Se reconnecter à la nature, aux saisons et à son énergie vitale.</p></div>
         </div>
         <p class="reveal" style="--d:.5s"><a href="philosophie.html">Lire la philosophie du cabinet →</a></p>
       </div>
@@ -148,7 +147,7 @@
       </div>
 
       <div class="menu">
-        <div class="menu-group c-dawn">
+        <div class="menu-group c-rose">
           <div class="group-head reveal"><h3>Soins du corps</h3><p>Le toucher pour relâcher les tensions.</p></div>
           <div class="menu-items">
             <article class="soin reveal">
@@ -164,7 +163,7 @@
           </div>
         </div>
 
-        <div class="menu-group c-heather">
+        <div class="menu-group c-violet">
           <div class="group-head reveal"><h3>Soins énergétiques</h3><p>Rééquilibrer et alléger, au cabinet, sur place ou à distance.</p></div>
           <div class="menu-items">
             <article class="soin reveal">
@@ -185,7 +184,7 @@
           </div>
         </div>
 
-        <div class="menu-group c-sky">
+        <div class="menu-group c-gold">
           <div class="group-head reveal"><h3>Accompagnement</h3><p>Des outils à prolonger chez soi.</p></div>
           <div class="menu-items">
             <article class="soin reveal">
@@ -224,24 +223,24 @@
     </div>
   </section>
 
-  <section class="band band-dawn" aria-labelledby="pratique-titre">
+  <section class="band band-rose" aria-labelledby="pratique-titre">
     <div class="wrap">
       <div class="section-head reveal">
         <p class="eyebrow">Infos pratiques</p>
         <h2 id="pratique-titre">Comment se déroule une séance</h2>
       </div>
       <div class="practical">
-        <div class="c-sky reveal" style="--d:0s">
+        <div class="c-gold reveal" style="--d:0s">
           <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M4 15 16 5l12 10"/><path d="M7 13v14h18V13"/><path d="M13 27v-7h6v7"/></svg></span>
           <h3>Au cabinet</h3>
           <p>35 chemin de la Morge, 38960 Saint-Étienne-de-Crossey. Stationnement facile, à quelques minutes de Voiron.</p>
         </div>
-        <div class="c-heather reveal" style="--d:.12s">
+        <div class="c-violet reveal" style="--d:.12s">
           <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="9" y="3" width="14" height="26" rx="3"/><path d="M14 25h4"/><path d="M5 12a8 8 0 0 0 0 8M27 12a8 8 0 0 1 0 8"/></svg></span>
           <h3>À distance</h3>
           <p>Nettoyages énergétiques et conseils en élixirs floraux possibles en visio ou par WhatsApp, où que vous soyez.</p>
         </div>
-        <div class="c-dawn reveal" style="--d:.24s">
+        <div class="c-rose reveal" style="--d:.24s">
           <span class="icon"><svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><rect x="4" y="8" width="24" height="16" rx="2"/><circle cx="16" cy="16" r="3.5"/><path d="M8 12h2M22 20h2"/></svg></span>
           <h3>Règlement sur place</h3>
           <p>Aucun paiement en ligne : vous réglez à la fin de la séance, en <span class="todo">espèces ou par chèque</span>.</p>
@@ -316,7 +315,7 @@
     </div>
   </section>
 
-  <section class="band band-heather" id="contact" aria-labelledby="contact-titre">
+  <section class="band band-lilac" id="contact" aria-labelledby="contact-titre">
     <div class="wrap contact">
       <div class="reveal" style="display:grid; gap:1.5rem; align-content:start; min-width:0">
         <p class="eyebrow">Contact</p>

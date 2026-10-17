@@ -17,13 +17,13 @@ if ('IntersectionObserver' in window && !reduceMotion) {
   reveals.forEach(el => el.classList.add('in'));
 }
 
-// Crêtes de la Chartreuse en parallaxe
-const ridgeLayers = document.querySelectorAll('.ridges [data-depth]');
-if (ridgeLayers.length && !reduceMotion) {
+// Ondes d'énergie en parallaxe
+const waveLayers = document.querySelectorAll('.waves [data-depth]');
+if (waveLayers.length && !reduceMotion) {
   let ticking = false;
   const move = () => {
     const y = Math.min(window.scrollY, 900);
-    ridgeLayers.forEach(l => { l.style.transform = `translateY(${-y * Number(l.dataset.depth)}px)`; });
+    waveLayers.forEach(l => { l.style.transform = `translateY(${-y * Number(l.dataset.depth)}px)`; });
     ticking = false;
   };
   window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(move); } }, { passive: true });
@@ -53,7 +53,7 @@ if (canvas && !reduceMotion) {
   const ctx = canvas.getContext('2d');
   const hero = canvas.parentElement;
   let w, h, motes = [], running = true;
-  const color = () => getComputedStyle(document.documentElement).getPropertyValue('--gold').trim() || '#ad873a';
+  const color = () => getComputedStyle(document.documentElement).getPropertyValue('--amber').trim() || '#ad873a';
   let tint = color();
   const resize = () => {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);

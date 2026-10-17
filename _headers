@@ -1,0 +1,13 @@
+# En-têtes de sécurité appliqués par Cloudflare Pages à toutes les pages
+# CSP : tout vient du site lui-même, sauf l'agenda Cal.com (script + iframe).
+# Le hash autorise la seule ligne de script écrite dans les pages : document.documentElement.classList.add('js')
+/*
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'sha256-Du+OJKJSbdUgz5nrHeWWINvez6XKDDU/tyj/5c2uvwo=' https://app.cal.com; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; frame-src https://app.cal.com https://cal.com; connect-src 'self' https://app.cal.com; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+
+/assets/*
+  Cache-Control: public, max-age=604800

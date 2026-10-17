@@ -9,13 +9,17 @@ nettoyage énergétique, sophrologie, élixirs floraux.
 - `philosophie.html` — l'approche et la présentation des pratiques
 - `assets/style.css` — styles communs (thème clair et sombre)
 - `assets/main.js` — menu mobile et maquette de réservation (à remplacer par l'intégration Cal.com)
+- `mentions-legales.html` — mentions légales (SIRET à compléter)
+- `404.html` — page « introuvable »
+- `assets/fonts/` — polices hébergées sur le site (aucun appel à Google)
 - `_redirects` — redirections 301 des anciennes URL Wix (Cloudflare Pages)
+- `_headers` — en-têtes de sécurité (CSP prête pour l'agenda Cal.com)
 - `docs/` — notes de projet : SEO, hébergement, informations à demander à Béatrice
 
 Les passages surlignés en doré (classe `.todo`) sont à confirmer avec Béatrice.
 
 ## Voir le site en local
-Ouvrir `index.html` dans un navigateur, ou lancer `python3 -m http.server` puis aller sur http://localhost:8000.
+Lancer `python3 -m http.server` puis aller sur http://localhost:8000.
 
 ## Mise en ligne
 Cloudflare Pages, connecté à ce dépôt privé (voir `docs/hebergement.md`).
