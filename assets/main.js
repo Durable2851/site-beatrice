@@ -1,3 +1,88 @@
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+// En-tête qui se resserre au défilement
+const header = document.querySelector('.site-header');
+const onScrollHeader = () => header && header.classList.toggle('scrolled', window.scrollY > 20);
+window.addEventListener('scroll', onScrollHeader, { passive: true });
+onScrollHeader();
+
+// Apparition douce des blocs au défilement
+const reveals = document.querySelectorAll('.reveal');
+if ('IntersectionObserver' in window && !reduceMotion) {
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
+  reveals.forEach(el => io.observe(el));
+} else {
+  reveals.forEach(el => el.classList.add('in'));
+}
+
+// Crêtes de la Chartreuse en parallaxe
+const ridgeLayers = document.querySelectorAll('.ridges [data-depth]');
+if (ridgeLayers.length && !reduceMotion) {
+  let ticking = false;
+  const move = () => {
+    const y = Math.min(window.scrollY, 900);
+    ridgeLayers.forEach(l => { l.style.transform = `translateY(${-y * Number(l.dataset.depth)}px)`; });
+    ticking = false;
+  };
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(move); } }, { passive: true });
+}
+
+// Compteur « 23 ans » quand il apparaît
+document.querySelectorAll('[data-count]').forEach(el => {
+  if (reduceMotion || !('IntersectionObserver' in window)) return;
+  const target = Number(el.dataset.count);
+  const io = new IntersectionObserver(([e]) => {
+    if (!e.isIntersecting) return;
+    io.disconnect();
+    const t0 = performance.now();
+    const step = now => {
+      const k = Math.min((now - t0) / 1600, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - k, 3)));
+      if (k < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, { threshold: 0.6 });
+  io.observe(el);
+});
+
+// Poussières de lumière qui montent lentement dans le ciel du héros
+const canvas = document.querySelector('.motes');
+if (canvas && !reduceMotion) {
+  const ctx = canvas.getContext('2d');
+  const hero = canvas.parentElement;
+  let w, h, motes = [], running = true;
+  const color = () => getComputedStyle(document.documentElement).getPropertyValue('--gold').trim() || '#ad873a';
+  let tint = color();
+  const resize = () => {
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    w = hero.clientWidth; h = hero.clientHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(40, w / 30));
+    motes = Array.from({ length: n }, () => ({
+      x: Math.random() * w, y: Math.random() * h, r: 0.8 + Math.random() * 2.2,
+      vy: 0.12 + Math.random() * 0.3, sway: Math.random() * Math.PI * 2, a: 0.15 + Math.random() * 0.45,
+    }));
+  };
+  const draw = () => {
+    if (!running) return;
+    ctx.clearRect(0, 0, w, h);
+    ctx.fillStyle = tint;
+    for (const m of motes) {
+      m.y -= m.vy; m.sway += 0.01; m.x += Math.sin(m.sway) * 0.25;
+      if (m.y < -10) { m.y = h + 10; m.x = Math.random() * w; }
+      ctx.globalAlpha = m.a * Math.min(1, m.y / (h * 0.3));
+      ctx.beginPath(); ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2); ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  };
+  resize(); draw();
+  window.addEventListener('resize', resize);
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { tint = color(); });
+  new IntersectionObserver(([e]) => { const was = running; running = e.isIntersecting; if (running && !was) draw(); }).observe(hero);
+}
+
 // Menu mobile
 const toggle = document.getElementById('nav-toggle');
 const nav = document.getElementById('nav');
