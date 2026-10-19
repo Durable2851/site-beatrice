@@ -259,29 +259,39 @@ section { scroll-margin-top: 80px; }
 .quote::before { content: "« "; color: var(--rose); }
 .quote::after { content: " »"; color: var(--rose); }
 
-/* Carte des soins */
-.menu { display: grid; gap: 4rem; }
-.menu-group { display: grid; grid-template-columns: 14rem 1fr; gap: 2rem; }
-.group-head { display: grid; gap: 0.6rem; align-content: start; padding-top: 0.6rem; }
-.group-head h3 { font-family: var(--font-body); font-size: var(--step--1); letter-spacing: 0.16em; text-transform: uppercase; color: var(--c); font-weight: 600; }
-.group-head::before { content: ""; width: 42px; height: 3px; border-radius: 3px; background: var(--c); }
-.group-head p { font-size: var(--step--1); color: var(--ink-soft); }
-.menu-items { display: grid; }
-.soin {
-  display: grid; grid-template-columns: 1fr auto; gap: 0.4rem 2rem; padding: 1.5rem 1rem; margin-inline: -1rem;
-  border-bottom: 1px solid var(--line); border-radius: 4px; position: relative;
-  transition: background .35s, padding .35s var(--ease);
+/* Carte des soins : cartes illustrées */
+.soins-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.2rem; }
+.card {
+  position: relative; overflow: hidden; display: grid; grid-template-rows: auto auto auto 1fr auto; gap: 0.55rem;
+  padding: 1.7rem; border-radius: 18px; background: var(--paper); border: 1px solid var(--line);
+  transition: transform .4s var(--ease), box-shadow .4s, border-color .4s;
 }
-.soin:first-child { border-top: 1px solid var(--line); }
-.soin::before { content: ""; position: absolute; left: 0; top: 18%; bottom: 18%; width: 2px; background: var(--c); transform: scaleY(0); transition: transform .35s var(--ease); }
-.soin:hover { background: var(--c-soft); padding-left: 1.6rem; }
-.soin:hover::before { transform: scaleY(1); }
-.soin h4 { font-size: var(--step-2); line-height: 1.2; }
-.soin p { color: var(--ink-soft); grid-column: 1; max-width: 36em; }
-.soin .price { grid-column: 2; grid-row: 1 / span 2; text-align: right; font-variant-numeric: tabular-nums; display: grid; align-content: start; gap: 0.2rem; }
-.price b { font-family: var(--font-display); font-weight: 400; font-size: var(--step-2); color: var(--ink); }
-.price small { color: var(--ink-soft); font-size: var(--step--1); }
-.menu-note { color: var(--ink-soft); font-size: var(--step--1); margin-top: 2.5rem; max-width: 46em; }
+.card::before { content: ""; position: absolute; width: 220px; aspect-ratio: 1; right: -90px; top: -90px; border-radius: 50%;
+  background: radial-gradient(circle, var(--c-soft), transparent 70%); opacity: .9; pointer-events: none; transition: transform .6s var(--ease); }
+.card:hover { transform: translateY(-5px); border-color: color-mix(in srgb, var(--c) 35%, var(--line));
+  box-shadow: 0 24px 50px -30px color-mix(in srgb, var(--c) 75%, transparent); }
+.card:hover::before { transform: scale(1.25); }
+.card > * { position: relative; }
+.illu { width: 78px; height: 78px; border-radius: 50%; display: grid; place-items: center; color: var(--c); margin-bottom: 0.6rem;
+  background: radial-gradient(circle at 35% 30%, var(--paper), var(--c-soft) 72%);
+  box-shadow: 0 0 0 7px color-mix(in srgb, var(--c-soft) 55%, transparent); }
+.illu svg { width: 48px; height: 48px; transition: transform .6s var(--ease); }
+.card:hover .illu svg { transform: scale(1.08); }
+.card-tag { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c); font-weight: 600; }
+.card h3 { font-size: 1.45rem; }
+.card > p:not(.card-tag) { color: var(--ink-soft); font-size: 0.98rem; }
+.card-foot { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.3rem 1rem;
+  border-top: 1px solid var(--line); padding-top: 0.9rem; margin-top: 0.5rem; font-variant-numeric: tabular-nums; }
+.card-foot b { font-family: var(--font-display); font-weight: 400; font-size: 1.6rem; color: var(--ink); }
+.card-foot span { font-size: var(--step--1); color: var(--ink-soft); }
+.card-cta { grid-column: span 2; align-content: center; grid-template-rows: none; gap: 1rem; border: 0; color: var(--on-night);
+  background: radial-gradient(circle at 85% 30%, color-mix(in srgb, var(--rose) 35%, transparent), transparent 40%),
+              radial-gradient(circle at 85% 30%, color-mix(in srgb, var(--violet) 40%, transparent), transparent 62%), var(--night); }
+.card-cta::before { display: none; }
+.card-cta h3 { font-size: var(--step-2); max-width: 18em; }
+.card-cta > p { color: var(--on-night-soft) !important; max-width: 32em; }
+.cta-phone { color: var(--on-night-soft); font-size: var(--step--1); align-self: center; }
+.menu-note { color: var(--ink-soft); font-size: var(--step--1); margin-top: 2rem; max-width: 46em; }
 
 /* Qui suis-je */
 .about { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 4rem; align-items: center; }
@@ -360,11 +370,12 @@ section { scroll-margin-top: 80px; }
 .footer-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; }
 
 /* Page Philosophie */
-.page-hero .wrap { padding-block: 5rem 10rem; display: grid; gap: 1.3rem; grid-template-columns: 1fr; }
+.page-hero .wrap { padding-block: 5rem 12rem; }
 .methods { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
 .method { display: grid; gap: 0.7rem; align-content: start; padding: 2rem; border-radius: 10px; background: var(--paper); border-top: 3px solid var(--c); transition: transform .35s var(--ease), box-shadow .35s; }
 .method:hover { transform: translateY(-4px); box-shadow: 0 20px 40px -28px color-mix(in srgb, var(--c) 80%, transparent); }
 .method h3 { font-size: var(--step-2); }
+.method .illu { margin-bottom: 0.3rem; }
 .method p { color: var(--ink-soft); }
 .method .tag { font-size: var(--step--1); color: var(--c); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
@@ -382,7 +393,8 @@ section { scroll-margin-top: 80px; }
   .hero .wrap { padding-block: 3rem 8rem; gap: 2rem; }
   .arch { max-width: 230px; justify-self: start; }
   .sun { right: 0; bottom: 40px; }
-  .menu-group { grid-template-columns: 1fr; gap: 1rem; }
+  .soins-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .card-cta { grid-column: auto; }
   .triad-list, .practical, .methods { grid-template-columns: 1fr; gap: 1.5rem; }
   .triad { gap: 2.5rem; }
   .ripples { width: 190px; }
@@ -394,8 +406,8 @@ section { scroll-margin-top: 80px; }
   .gallery figure:first-child picture { aspect-ratio: 3 / 4; }
 }
 @media (max-width: 520px) {
-  .soin { grid-template-columns: 1fr; }
-  .soin .price { grid-column: 1; grid-row: auto; text-align: left; grid-auto-flow: column; justify-content: start; align-items: baseline; gap: 0.6rem; }
+  .soins-grid { grid-template-columns: 1fr; }
+  .card-cta { grid-column: auto; }
   .field-row { grid-template-columns: 1fr; }
   .contact dl { grid-template-columns: 1fr; gap: 0.2rem; }
   .contact dd { margin-bottom: 0.8rem; }
