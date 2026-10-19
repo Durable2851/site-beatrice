@@ -204,9 +204,22 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .hero .orb-photo { animation: fadeUp 1.2s .3s var(--ease) both; }
 .gallery img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Portrait (Qui suis-je) */
-.portrait { justify-self: center; max-width: 400px; }
-.portrait figcaption { position: absolute; left: 50%; bottom: -0.6rem; transform: translateX(-50%); white-space: nowrap; z-index: 2;
+/* Portrait (Qui suis-je) : Béatrice détourée, posée dans une boule d'énergie.
+   La photo (74 % de large, épaules estompées sur les côtés) est découpée par le disque. */
+.portrait { position: relative; margin: 0 auto; width: 100%; max-width: 380px; aspect-ratio: 1; }
+.portrait::before, .portrait::after { content: ""; position: absolute; inset: 0; border-radius: 50%; }
+.portrait::before {
+  background: radial-gradient(circle at 50% 42%,
+    color-mix(in srgb, var(--orb) 75%, #fff) 0%, var(--orb) 22%,
+    color-mix(in srgb, var(--rose) 70%, var(--orb)) 48%, var(--violet) 100%);
+  box-shadow: 0 0 80px -10px color-mix(in srgb, var(--rose) 55%, transparent),
+              0 0 160px -30px color-mix(in srgb, var(--violet) 60%, transparent);
+}
+.portrait::after { inset: -16px; border: 1px solid color-mix(in srgb, var(--violet) 40%, transparent); }
+.portrait picture { position: absolute; inset: 0; display: block; z-index: 1; border-radius: 50%; overflow: hidden; }
+.portrait img { position: absolute; left: 13%; top: 5%; width: 74%; height: auto; transition: transform 1.2s var(--ease); transform-origin: 50% 100%; }
+.portrait:hover img { transform: scale(1.02); }
+.portrait figcaption { position: absolute; left: 50%; bottom: -1.1rem; transform: translateX(-50%); white-space: nowrap; z-index: 2;
   background: var(--paper); color: var(--ink); font-size: var(--step--1); padding: 0.4em 1em; border-radius: 999px;
   box-shadow: 0 6px 20px -10px color-mix(in srgb, var(--violet) 60%, transparent); }
 
@@ -402,7 +415,7 @@ section { scroll-margin-top: 80px; }
   .triad { gap: 2.5rem; }
   .ripples { width: 190px; }
   .band { padding-block: 4.5rem; }
-  .portrait { max-width: 280px; }
+  .portrait { max-width: 260px; }
   .gallery { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 78%; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 0.6rem; }
   .gallery figure { scroll-snap-align: start; }
   .gallery figure:nth-child(n) { margin-top: 0; }
